@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Portal – Certificates HQ</title>
+  <link rel="stylesheet" href="style-portal.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="portal">
+    <header>
+      <h1> Admin Portal </h1>
+      <div class="header-right">
+        <span id="user-name"></span>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <nav class="portal-nav">
+      <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+      <button class="nav-tab" data-tab="requests">All Requests</button>
+      <button class="nav-tab" data-tab="institutes">Institutes</button>
+      <button class="nav-tab" data-tab="analytics">Analytics</button>
+    </nav>
+
+    <!-- Dashboard -->
+    <section class="tab-panel active" data-panel="dashboard">
+      <div class="panel-header">
+        <h2>Dashboard Overview</h2>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-institutes">0</div>
+          <div class="stat-label">Institutes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-students">0</div>
+          <div class="stat-label">Total Students</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-teachers">0</div>
+          <div class="stat-label">Total Teachers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-requests">0</div>
+          <div class="stat-label">Requests Today</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Requests -->
+    <section class="tab-panel" data-panel="requests">
+      <div class="panel-header">
+        <h2>All Requests</h2>
+      </div>
+      <div id="all-requests-list" class="card-grid"></div>
+      <p id="requests-empty" class="empty-state">No requests yet.</p>
+    </section>
+
+    <!-- Institutes -->
+    <section class="tab-panel" data-panel="institutes">
+      <div class="panel-header">
+        <h2>Institute Management</h2>
+        <button class="btn-primary" id="add-inst-btn">+ Add Institute</button>
+      </div>
+      <div id="inst-list" class="card-grid"></div>
+
+      <!-- Add institute form -->
+      <div id="inst-form" class="form-panel" style="display:none;margin-top:20px;">
+        <h3>Add New Institute</h3>
+        <div class="form-group">
+          <label>Institute Name</label>
+          <input type="text" id="inst-name-input" />
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="inst-location-input" />
+        </div>
+        <button class="btn-primary" id="submit-inst-btn">Add</button>
+        <button class="btn-secondary" id="cancel-inst-btn">Cancel</button>
+      </div>
+    </section>
+
+    <!-- Analytics -->
+    <section class="tab-panel" data-panel="analytics">
+      <div class="panel-header">
+        <h2>Analytics</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div>
+          <h3>Users per Day (Last 7 days)</h3>
+          <canvas id="usersChart"></canvas>
+        </div>
+        <div>
+          <h3>Requests Accepted per Day</h3>
+          <canvas id="requestsChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="admin-portal.js"></script>
+</body>
+</html>
